@@ -1,0 +1,63 @@
+{
+    "columns": [
+        "product_name",
+        "price",
+        "count"
+    ],
+    "column_metadata": {
+        "product_name": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "VARCHAR"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.length",
+                "value": "100"
+            }
+        ],
+        "price": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "FLOAT"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "FLOAT"
+            },
+            {
+                "key": "KBC.datatype.length",
+                "value": "8"
+            }
+        ],
+        "count": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "BIGINT"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "INTEGER"
+            },
+            {
+                "key": "KBC.datatype.length",
+                "value": "8"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1 @@
+Query "INSERT INTO "not_found" VALUES (1, 2)" from block "Block 1" and code "Code 1" failed: "[Teradata][ODBC Teradata Driver][Teradata Database](-3807)Object 'not_found' does not exist."

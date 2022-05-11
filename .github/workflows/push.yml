@@ -3,13 +3,25 @@ name: 'GitHub Actions'
     - push
 concurrency: 'ci-${{ github.ref }}'
 env:
-    APP_IMAGE: keboola-component
+    APP_IMAGE: keboola/teradata-transformation
     KBC_DEVELOPERPORTAL_VENDOR: keboola
     KBC_DEVELOPERPORTAL_APP: keboola.teradata-transformation
     KBC_DEVELOPERPORTAL_USERNAME: keboola+teradata_transformation_github_actions
     KBC_DEVELOPERPORTAL_PASSWORD: '${{ secrets.KBC_DEVELOPERPORTAL_PASSWORD }}'
+
+    AWS_ACCESS_KEY_ID: AKIAQ4QRYXTAMWJAN66K
+    AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+
+    TERADATA_HOST: '20.67.225.211'
+    TERADATA_PORT: 1025
+    TERADATA_DATABASE: 'test_project1'
+    TERADATA_SCHEMA: ''
+    TERADATA_USERNAME: 'test_project1'
+    TERADATA_PASSWORD: '${{ secrets.TERADATA_PASSWORD }}'
+
     DOCKERHUB_USER: keboolabot
     DOCKERHUB_TOKEN: '${{ secrets.DOCKERHUB_TOKEN }}'
+
     KBC_STORAGE_TOKEN: '${{ secrets.KBC_STORAGE_TOKEN }}'
     KBC_TEST_PROJECT_URL: ''
     KBC_TEST_PROJECT_CONFIGS: ''

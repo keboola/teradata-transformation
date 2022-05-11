@@ -1,20 +1,56 @@
-# my-component
+# Teradata transformation
 
-[![Build Status](https://travis-ci.com/keboola/my-component.svg?branch=master)](https://travis-ci.com/keboola/my-component)
+Application which runs [KBC](https://connection.keboola.com/) transformations in Teradata DB
 
-> Fill in description
+## Options
 
-# Usage
+- `authorization` object (required): [workspace credentials](https://developers.keboola.com/extend/common-interface/folders/#exchanging-data-via-workspace)
+- `parameters`
+    - `blocks` array (required): list of blocks
+        - `name` string (required): name of the block
+        - `codes` array (required): list of codes
+            - `name` string (required): name of the code
+            - `script` array (required): list of sql queries
 
-> fill in usage instructions
+## Example Configuration
+
+```json
+{
+  "authorization": {
+    "workspace": {
+      "host": "teradata_host",
+      "user": "teradata_user",
+      "password": "teradata_password",
+      "database": "teradata_database",
+      "schema": "teradata_schema"
+    }
+  },
+  "parameters": {
+    "blocks": [
+      {
+        "name": "first block",
+        "codes": [
+          {
+            "name": "first code",
+            "script": [
+              "CREATE TABLE IF NOT EXISTS \"example\" (\"name\" VARCHAR(200),\"usercity\" VARCHAR(200));",
+              "INSERT INTO \"example\" VALUES ('test example name', 'Prague'), ('test example name 2', 'Brno'), ('test example name 3', 'Ostrava')"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 ## Development
  
 Clone this repository and init the workspace with following command:
 
 ```
-git clone https://github.com/keboola/my-component
-cd my-component
+git clone https://github.com/keboola/teradata-transformation
+cd teradata-transformation
 docker-compose build
 docker-compose run --rm dev composer install --no-scripts
 ```
