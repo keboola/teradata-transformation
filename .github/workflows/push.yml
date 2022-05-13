@@ -90,7 +90,16 @@ jobs:
                     tag_as_latest: true
             -
                 name: 'Run tests'
-                run: 'docker run ${{env.APP_IMAGE}} composer ci'
+                run: |
+                    docker run \
+                    -e TERADATA_HOST \
+                    -e TERADATA_PORT \
+                    -e TERADATA_DATABASE \
+                    -e TERADATA_SCHEMA \
+                    -e TERADATA_USERNAME \
+                    -e TERADATA_PASSWORD \
+                    ${{env.APP_IMAGE}} \
+                    composer ci
     tests-in-kbc:
         needs: build
         runs-on: ubuntu-latest
