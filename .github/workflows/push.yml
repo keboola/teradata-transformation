@@ -45,10 +45,10 @@ jobs:
             -
                 name: 'Build image'
                 run: |
-                    docker build
-                    --build-arg AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }}
-                    --build-arg AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }}
-                    -t $APP_IMAGE
+                    docker build \
+                    --build-arg AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} \
+                    --build-arg AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} \
+                    -t $APP_IMAGE \
                     .
             -
                 name: 'Set image tag'
