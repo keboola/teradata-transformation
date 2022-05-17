@@ -3,13 +3,25 @@ name: 'GitHub Actions'
     - push
 concurrency: 'ci-${{ github.ref }}'
 env:
-    APP_IMAGE: keboola-component
+    APP_IMAGE: keboola/teradata-transformation
     KBC_DEVELOPERPORTAL_VENDOR: keboola
     KBC_DEVELOPERPORTAL_APP: keboola.teradata-transformation
     KBC_DEVELOPERPORTAL_USERNAME: keboola+teradata_transformation_github_actions
     KBC_DEVELOPERPORTAL_PASSWORD: '${{ secrets.KBC_DEVELOPERPORTAL_PASSWORD }}'
+
+    AWS_ACCESS_KEY_ID: AKIAQ4QRYXTAMWJAN66K
+    AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+
+    TERADATA_HOST: '20.67.225.211'
+    TERADATA_PORT: 1025
+    TERADATA_DATABASE: 'test_project1'
+    TERADATA_SCHEMA: ''
+    TERADATA_USERNAME: 'test_project1'
+    TERADATA_PASSWORD: '${{ secrets.TERADATA_PASSWORD }}'
+
     DOCKERHUB_USER: keboolabot
     DOCKERHUB_TOKEN: '${{ secrets.DOCKERHUB_TOKEN }}'
+
     KBC_STORAGE_TOKEN: '${{ secrets.KBC_STORAGE_TOKEN }}'
     KBC_TEST_PROJECT_URL: ''
     KBC_TEST_PROJECT_CONFIGS: ''
@@ -32,7 +44,12 @@ jobs:
                 run: 'docker login --username "$DOCKERHUB_USER" --password "$DOCKERHUB_TOKEN"'
             -
                 name: 'Build image'
-                run: 'docker build -t $APP_IMAGE .'
+                run: |
+                    docker build \
+                    --build-arg AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} \
+                    --build-arg AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} \
+                    -t $APP_IMAGE \
+                    .
             -
                 name: 'Set image tag'
                 id: tag
@@ -73,7 +90,16 @@ jobs:
                     tag_as_latest: true
             -
                 name: 'Run tests'
-                run: 'docker run ${{env.APP_IMAGE}} composer ci'
+                run: |
+                    docker run \
+                    -e TERADATA_HOST \
+                    -e TERADATA_PORT \
+                    -e TERADATA_DATABASE \
+                    -e TERADATA_SCHEMA \
+                    -e TERADATA_USERNAME \
+                    -e TERADATA_PASSWORD \
+                    ${{env.APP_IMAGE}} \
+                    composer ci
     tests-in-kbc:
         needs: build
         runs-on: ubuntu-latest

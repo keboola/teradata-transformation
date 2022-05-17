@@ -1,0 +1,31 @@
+{
+  "authorization": {
+    "workspace": {
+      "host": "%env(string:TERADATA_HOST)%",
+      "port": "%env(int:TERADATA_PORT)%",
+      "user": "%env(string:TERADATA_USERNAME)%",
+      "password": "%env(string:TERADATA_PASSWORD)%",
+      "database": "%env(string:TERADATA_DATABASE)%",
+      "schema": "%env(string:TERADATA_SCHEMA)%"
+    }
+  },
+  "parameters": {
+    "blocks": [
+      {
+        "name": "Block 1",
+        "codes": [
+          {
+            "name": "Code 1",
+            "script": [
+              "CREATE TABLE \"new-table\" (\"product_name\" VARCHAR(100), \"price\" FLOAT)",
+              "INSERT INTO \"new-table\" (\"product_name\", \"price\") VALUES ('row1', 12.00)",
+              "CREATE TABLE \"new-table2\" AS (SELECT \"product_name\", \"price\" FROM \"new-table\") WITH DATA",
+              "SELECT * FROM \"new-table\"",
+              "INSERT INTO \"new-table\" (\"product_name\", \"price\") VALUES ('row2', 56.00)"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

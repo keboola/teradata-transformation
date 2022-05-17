@@ -1,0 +1,44 @@
+{
+    "columns": [
+        "id",
+        "user_name"
+    ],
+    "column_metadata": {
+        "id": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "INTEGER"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": false
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "INTEGER"
+            },
+            {
+                "key": "KBC.datatype.length",
+                "value": "4"
+            }
+        ],
+        "user_name": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "VARCHAR"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.length",
+                "value": "100"
+            }
+        ]
+    }
+}
