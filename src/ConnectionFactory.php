@@ -23,7 +23,7 @@ class ConnectionFactory
 
         $connection->executeStatement(sprintf(
             'SET SESSION DATABASE %s;',
-            TeradataQuote::quoteSingleIdentifier($config->getDatabaseName())
+            TeradataQuote::quoteSingleIdentifier($config->getDatabaseSchema())
         ));
 
         return $connection;

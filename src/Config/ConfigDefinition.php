@@ -35,6 +35,7 @@ class ConfigDefinition extends BaseConfigDefinition
                     ->scalarNode('user')->isRequired()->end()
                     ->scalarNode('password')->isRequired()->end()
                     ->scalarNode('database')->isRequired()->end()
+                    ->scalarNode('schema')->isRequired()->end()
                 ->end()
             ->end()
         ;
