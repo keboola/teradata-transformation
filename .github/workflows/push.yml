@@ -15,7 +15,7 @@ env:
     TERADATA_HOST: '20.67.225.211'
     TERADATA_PORT: 1025
     TERADATA_DATABASE: 'test_project1'
-    TERADATA_SCHEMA: ''
+    TERADATA_SCHEMA: 'test_project1'
     TERADATA_USERNAME: 'test_project1'
     TERADATA_PASSWORD: '${{ secrets.TERADATA_PASSWORD }}'
 
