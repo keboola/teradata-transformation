@@ -286,7 +286,8 @@ class ConfigTest extends TestCase
                 'port' => 12345,
                 'user' => 'user',
                 'password' => 'secret password',
-                'database' => 'db schema',
+                'database' => 'db database',
+                'schema' => 'db schema',
             ],
         ];
     }
