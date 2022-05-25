@@ -22,7 +22,7 @@ class Component extends BaseComponent
 
             $manifestBuilder = new ManifestWriter($connection, $this->getManifestManager());
             $manifestBuilder->process(
-                $this->getConfig()->getDatabaseName(),
+                $this->getConfig()->getDatabaseSchema(),
                 $this->getConfig()->getExpectedOutputTables()
             );
         } catch (DriverException $exception) {
