@@ -1,1 +1,1 @@
-An exception occurred while executing a query: [Teradata][ODBC Teradata Driver][Teradata Database](-3807)Object 'test_project1.not_found' does not exist.
+An exception occurred while executing a query: [Teradata][ODBC Teradata Driver][Teradata Database](-3807)Object '%s.not_found' does not exist.

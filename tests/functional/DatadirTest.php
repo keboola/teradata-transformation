@@ -8,6 +8,7 @@ use Doctrine\DBAL\Connection;
 use Keboola\Csv\CsvWriter;
 use Keboola\DatadirTests\AbstractDatadirTestCase;
 use Keboola\DatadirTests\DatadirTestSpecificationInterface;
+use Keboola\TableBackendUtils\Escaping\Teradata\TeradataQuote;
 use Keboola\TableBackendUtils\Table\Teradata\TeradataTableQueryBuilder;
 use Keboola\TeradataTransformation\TestTraits\CreateConnectionTrait;
 use Keboola\TeradataTransformation\TestTraits\GetTableColumnsTrait;
@@ -31,7 +32,6 @@ class DatadirTest extends AbstractDatadirTestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-        $this->dropAllTables();
     }
 
     /**
@@ -134,7 +134,14 @@ class DatadirTest extends AbstractDatadirTestCase
 
         // Write data
         $data = $connection->executeQuery(sprintf(
-            'SELECT * FROM %s ORDER BY %s',
+            'SELECT %s FROM %s ORDER BY %s',
+            implode(
+                ', ',
+                array_map(
+                    fn(string $col) => TeradataQuote::quoteSingleIdentifier($col),
+                    $columns
+                )
+            ),
             $connection->quoteIdentifier($table['TableName']),
             $connection->quoteIdentifier($columns[0])
         ))->fetchAllAssociative();
