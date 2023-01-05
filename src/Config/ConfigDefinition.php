@@ -25,6 +25,7 @@ class ConfigDefinition extends BaseConfigDefinition
 
         // @formatter:off
         $authorizationNode
+            ->ignoreExtraKeys()
             ->isRequired()
             ->children()->arrayNode('workspace')
                 ->ignoreExtraKeys()

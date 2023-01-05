@@ -15,13 +15,14 @@ trait GetTableColumnsTrait
      */
     public function getTableColumns(Connection $connection, array $table): array
     {
-        $sqlTemplate = 'select columnname from dbc.columns where tablename = %s and databasename = %s;';
+        $sqlTemplate = 'select columnname from dbc.columns where tablename = %s and databasename = %s order by %s;';
 
         return $connection->executeQuery(
             sprintf(
                 $sqlTemplate,
                 TeradataQuote::quote($table['TableName']),
-                TeradataQuote::quote($table['DataBaseName'])
+                TeradataQuote::quote($table['DataBaseName']),
+                TeradataQuote::quoteSingleIdentifier('ColumnId')
             )
         )->fetchAllAssociative();
     }
