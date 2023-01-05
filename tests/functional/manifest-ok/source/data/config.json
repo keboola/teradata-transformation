@@ -1,5 +1,6 @@
 {
   "authorization": {
+    "ignoreKey": "blablabla",
     "workspace": {
       "host": "%env(string:TERADATA_HOST)%",
       "port": "%env(int:TERADATA_PORT)%",
