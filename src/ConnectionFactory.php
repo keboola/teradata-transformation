@@ -26,6 +26,8 @@ class ConnectionFactory
             TeradataQuote::quoteSingleIdentifier($config->getDatabaseSchema())
         ));
 
+        $connection->executeStatement('SET ROLE ALL;');
+
         return $connection;
     }
 }
